@@ -1,5 +1,5 @@
 //
-//  SearchBarView.swift
+//  SearchView.swift
 //  U-Map
 //
 //  Created by Benjamin Keys on 3/12/21.

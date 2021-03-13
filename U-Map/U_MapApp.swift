@@ -11,7 +11,7 @@ import SwiftUI
 struct U_MapApp: App {
     var body: some Scene {
         WindowGroup {
-            TestView()
+            GreetingView()
         }
     }
 }

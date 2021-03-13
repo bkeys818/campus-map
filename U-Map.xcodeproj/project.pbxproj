@@ -11,7 +11,7 @@
 		44ADB5F825FBA0940028D56F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44ADB5F725FBA0940028D56F /* Assets.xcassets */; };
 		44ADB5FB25FBA0940028D56F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44ADB5FA25FBA0940028D56F /* Preview Assets.xcassets */; };
 		44ADB60525FBA0C30028D56F /* GreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ADB60425FBA0C30028D56F /* GreetingView.swift */; };
-		44ADB60C25FBB3CE0028D56F /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ADB60B25FBB3CE0028D56F /* SearchBarView.swift */; };
+		44ADB60C25FBB3CE0028D56F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ADB60B25FBB3CE0028D56F /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +21,7 @@
 		44ADB5FA25FBA0940028D56F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		44ADB5FC25FBA0940028D56F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44ADB60425FBA0C30028D56F /* GreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingView.swift; sourceTree = "<group>"; };
-		44ADB60B25FBB3CE0028D56F /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		44ADB60B25FBB3CE0028D56F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +56,7 @@
 			children = (
 				44ADB5F325FBA0920028D56F /* U_MapApp.swift */,
 				44ADB60425FBA0C30028D56F /* GreetingView.swift */,
-				44ADB60B25FBB3CE0028D56F /* SearchBarView.swift */,
+				44ADB60B25FBB3CE0028D56F /* SearchView.swift */,
 				44ADB5F725FBA0940028D56F /* Assets.xcassets */,
 				44ADB5FC25FBA0940028D56F /* Info.plist */,
 				44ADB5F925FBA0940028D56F /* Preview Content */,
@@ -142,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44ADB5F425FBA0920028D56F /* U_MapApp.swift in Sources */,
-				44ADB60C25FBB3CE0028D56F /* SearchBarView.swift in Sources */,
+				44ADB60C25FBB3CE0028D56F /* SearchView.swift in Sources */,
 				44ADB60525FBA0C30028D56F /* GreetingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
