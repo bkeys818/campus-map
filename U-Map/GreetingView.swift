@@ -24,8 +24,37 @@ struct GreetingView: View {
         }
     }
     
+    // TODO: Handle errors w/out "fatalError()"
     private func fetchMapData(school: School) -> Void {
+        enum fetchError: Error {
+            case invalidURL(url: String)
+        }
         
+        guard let url = URL(string: "https://raw.githubusercontent.com/bkeys818/u-map-data/master/data/"+school.url+".json") else {
+            fatalError("Error! \"https://raw.githubusercontent.com/bkeys818/u-map-data/master/"+school.url+".json\" is an invalid URL")
+        }
+        
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                fatalError(error?.localizedDescription ?? "Unknown Error")
+            }
+            guard let data = data else {
+                fatalError("URL session retrieved no data")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let response = try JSONDecoder().decode(SchoolData.self, from: data)
+                    print(response)
+                } catch {
+                    print(error)
+                }
+//                let decoder = JSONDecoder()
+//                let result = decoder.handelError(in: {
+//                    return try decoder.decode(SchoolData.self, from: data)
+//                })
+            }
+        }.resume()
     }
 }
 
