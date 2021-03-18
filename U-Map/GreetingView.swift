@@ -8,32 +8,67 @@
 import SwiftUI
 
 struct GreetingView: View {
-    private let schools: [School] = [
-        School(title: "Ball State University"),
-        School(title: "Loyola University Chicago"),
-        School(title: "Purdue University"),
-        School(title: "Indiana University Bloomington")
+    private let schools = [
+        "Ball State University",
+        "Loyola University Chicago",
+        "Purdue University",
+        "Indiana University Bloomington"
     ]
     
-    @State private var searchingText = ""
-    @State private var selectedSchool: School?
+    @State private var text = ""
+    @State private var isSearching = false
     
     var body: some View {
-        VStack(alignment: .center) {
-            SearchView(placeholder: "School", data: schools, onSelection: fetchMapData)
+        if isSearching {
+            VStack(alignment: .center) {
+                SearchBar("Find your college", text: $text, isEditing: $isSearching)
+                    .padding(.horizontal, isSearching ? 0 : 36)
+                    .animation(.easeInOut)
+                if text != "" {
+                    List {
+                        ForEach(filterSearch(), id: \.self) { school in
+                            HStack(alignment: .center, spacing: 15) {
+                                Text(school)
+                                    .lineLimit(1)
+                                Spacer()
+                            }
+                            .onTapGesture(perform: { fetchData(school) } )
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .transition(AnyTransition.move(edge: .top).combined(with: .opacity).animation(Animation.easeIn.delay(1.0)))
+                }
+            }
+        } else {
+            Button(action: {}) {
+                Text("Search Colleges")
+                    .font(.title)
+                    .foregroundColor(.primary)
+                    .padding(.vertical, 24)
+                    .padding(.horizontal, 38)
+                    .background(Color.red.opacity(0.4))
+                    .clipShape(Capsule())
+            }
+            .transition(AnyTransition.scale(scale: 0.2).combined(with: .opacity))
+        }
+    }
+    
+    private func filterSearch() -> [String] {
+        return schools.filter {
+            return (text.isEmpty == true)
+                || $0.lowercased().contains(text.lowercased())
         }
     }
     
     // TODO: Handle errors w/out "fatalError()"
-    private func fetchMapData(school: School) -> Void {
-        enum fetchError: Error {
-            case invalidURL(url: String)
+    private func fetchData(_ school: String) -> Void {
+        let urlStr = "https://raw.githubusercontent.com/bkeys818/u-map-data/\(UIApplication.appVersion)/data/"
+            + school.lowercased().replacingOccurrences(of: " ", with: "-") + ".json"
+        print(urlStr)
+        guard let url = URL(string: urlStr) else {
+            fatalError("Error! \"\(urlStr)\" is an invalid URL")
         }
-        
-        guard let url = URL(string: "https://raw.githubusercontent.com/bkeys818/u-map-data/master/data/"+school.url+".json") else {
-            fatalError("Error! \"https://raw.githubusercontent.com/bkeys818/u-map-data/master/"+school.url+".json\" is an invalid URL")
-        }
-        
+//
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
@@ -48,37 +83,18 @@ struct GreetingView: View {
                     print(response)
                 } catch {
                     print(error)
+                    fatalError()
                 }
-//                let decoder = JSONDecoder()
-//                let result = decoder.handelError(in: {
-//                    return try decoder.decode(SchoolData.self, from: data)
-//                })
             }
         }.resume()
     }
 }
 
+
+
+
 struct GreetingView_Previews: PreviewProvider {
     static var previews: some View {
         GreetingView()
-    }
-}
-
-struct School: Searchable {
-    let title: String
-    let querys: [String]
-    var url: String {
-        get {
-            return title.lowercased().replacingOccurrences(of: " ", with: "-")
-        }
-    }
-    
-    init(title: String, querys: [String]) {
-        self.title = title
-        self.querys = querys + [title]
-    }
-    init(title: String) {
-        self.title = title
-        self.querys = [title]
     }
 }

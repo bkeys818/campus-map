@@ -7,131 +7,85 @@
 
 import SwiftUI
 
-protocol Searchable: Hashable {
-    var title: String { get }
-    var querys: [String] { get }
-}
 
-struct SearchView<DataType: Searchable>: View {
-    @Environment(\.presentationMode) private var presentationMode
-    @State private var showingCancelButton = false
-    @State private var text = ""
+struct SearchBar: View {
     private let placeholder: String
+    @Binding private var text: String
+    @Binding private var isEditing: Bool
     
-    private let data: [DataType]
-    private var onSelection: (_: DataType) -> Void
-    
-    init(placeholder: String, data: [DataType], onSelection: @escaping (_: DataType) -> Void) {
+    init(_ placeholder: String, text: Binding<String>, isEditing: Binding<Bool>) {
         self.placeholder = placeholder
-        self.data = data
-        self.onSelection = onSelection
-    }
-    init(data: [DataType], onSelection: @escaping (_: DataType) -> Void) {
-        self.placeholder = "Search"
-        self.data = data
-        self.onSelection = onSelection
+        self._text = text
+        self._isEditing = isEditing
     }
     
     var body: some View {
-        VStack {
-            SearchBar(presentationMode: presentationMode, showingCancelButton: $showingCancelButton, text: $text, placeholder: placeholder)
-            List {
-                ForEach(filterSearch(), id: \.self) { item in
-                    HStack(alignment: .center, spacing: 15) {
-                        Text(item.title)
-                            .lineLimit(1)
-                        Spacer()
-                    }
-                    .onTapGesture(perform: { onSelection(item) } )
-                }
-            }
-            .padding(.top, -10)
-            .listStyle(PlainListStyle())
-            .onTapGesture(perform: {
-                UIApplication.shared.endEditing(true)
-            })
-            .gesture(
-                DragGesture()
-                    .onChanged({ value in
-                        UIApplication.shared.endEditing(true)
+        HStack(spacing: 11.25) {
+            ZStack {
+                // TODO: - Make sfsymbols an overlay
+                // That way clicking them still counts as clicking the searchbar
+                HStack(spacing: 4.3) {
+                    Image(systemName: "magnifyingglass")
+                        .padding(.top, -0.5)
+                        .padding(.leading, 0.5)
+                    TextField(placeholder, text: $text, onEditingChanged: { isEditing in
+                        withAnimation {
+                            self.isEditing = isEditing
+                        }
                     })
-            )
-        }
-    }
-    
-    private func filterSearch() -> [DataType] {
-        return data.filter {
-            if text.isEmpty == true { return true }
-            for query in $0.querys {
-                if query.lowercased().contains(text.lowercased()) { return true }
+                        .foregroundColor(.primary)
+                        .padding(.vertical, 7)
+                    if (text != "") {
+                        Button(action: { text = "" }) {
+                            // TODO: - Add microphone when text is empty
+                            Image(systemName: "xmark.circle.fill")
+                        }
+                    }
+                }
+                .foregroundColor(Color(.systemGray))
+                .padding(.horizontal, 5.75)
+                .background(Color(.systemGray6))
             }
-            return false
-        }
-    }
-    
-    private struct SearchBar: UIViewRepresentable {
-        @Binding var presentationMode: PresentationMode
-        @Binding var showingCancelButton: Bool
-        @Binding var text: String
-        let placeholder: String
-        
-        func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
-            let searchBar = UISearchBar(frame: .zero)
-            searchBar.delegate = context.coordinator
-            searchBar.placeholder = placeholder
-            
-            searchBar.searchBarStyle = .minimal
-            searchBar.returnKeyType = .done
-            
-            return searchBar
-        }
-        
-        func updateUIView(_ uiView: UISearchBar , context: UIViewRepresentableContext<SearchBar>) {
-            uiView.text = text
-            uiView.setShowsCancelButton(showingCancelButton, animated: true)
-        }
-        
-        
-        func makeCoordinator() -> Coordinator {
-            return Coordinator(parent: self)
-        }
-        
-        class Coordinator: NSObject, UISearchBarDelegate {
-            var parent: SearchBar
-            
-            init(parent: SearchBar) {
-                self.parent = parent
-            }
-            
-            func searchBar(_ searchBar: UISearchBar, textDidChange text: String) {
-                parent.text = text
-            }
-            
-            func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-                parent.presentationMode.dismiss()
-                parent.showingCancelButton = false
-                parent.text = ""
-            }
-            
-            func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-                UIApplication.shared.endEditing(true)
-            }
-            
-            func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-                parent.showingCancelButton = true
-            }
-            func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-                parent.showingCancelButton = false
-                UIApplication.shared.endEditing(true)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            if (isEditing) {
+                Button("Cancel") {
+                    withAnimation {
+                        isEditing = false
+                        UIApplication.shared.endEditing(true)
+                        text = ""
+                    }
+                }
+                .padding(.bottom, 2)
             }
         }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 10)
     }
 }
+
 
 
 
 // MARK: - Dismiss Keyboard
 // When user clicks off the keyboard, it will dismiss
+extension UIApplication {
+    func addTapGestureRecognizer() {
+        guard let window = windows.first else { return }
+        let tapGesture = UITapGestureRecognizer(target: window, action: #selector(UIView.endEditing))
+        tapGesture.cancelsTouchesInView = false
+        tapGesture.delegate = self
+        tapGesture.name = "MyTapGesture"
+        window.addGestureRecognizer(tapGesture)
+    }
+ }
+extension UIApplication: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false // set to `false` if you don't want to detect tap during other gestures
+    }
+}
+
+
+// Function to dismiss keyboard
 extension UIApplication {
     func endEditing(_ force: Bool) {
         self.windows

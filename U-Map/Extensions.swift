@@ -5,7 +5,7 @@
 //  Created by Benjamin Keys on 3/15/21.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - Item from array with index safely
 // Returns the element at the specified index if it is within bounds, otherwise nil.
@@ -52,6 +52,16 @@ Decoding Error: No value was found for \(type).
 """)
         } catch {
             fatalError(error.localizedDescription)
+        }
+    }
+}
+
+// MARK: - Build Version Variable
+// This works with custom build phase script to create variable with build version.
+extension UIApplication {
+    static var appVersion: String {
+        get {
+            return "v"+(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)
         }
     }
 }
