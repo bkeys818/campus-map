@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "44ADB5EF25FBA0920028D56F"
-               BuildableName = "U-Map.app"
-               BlueprintName = "U-Map"
-               ReferencedContainer = "container:U-Map.xcodeproj">
+               BuildableName = "Campus Map.app"
+               BlueprintName = "Campus Map"
+               ReferencedContainer = "container:Campus Map.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44ADB5EF25FBA0920028D56F"
-            BuildableName = "U-Map.app"
-            BlueprintName = "U-Map"
-            ReferencedContainer = "container:U-Map.xcodeproj">
+            BuildableName = "Campus Map.app"
+            BlueprintName = "Campus Map"
+            ReferencedContainer = "container:Campus Map.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44ADB5EF25FBA0920028D56F"
-            BuildableName = "U-Map.app"
-            BlueprintName = "U-Map"
-            ReferencedContainer = "container:U-Map.xcodeproj">
+            BuildableName = "Campus Map.app"
+            BlueprintName = "Campus Map"
+            ReferencedContainer = "container:Campus Map.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,6 +1,6 @@
 //
-//  U_MapApp.swift
-//  U-Map
+//  Campus_Map.swift
+//  Campus Map
 //
 //  Created by Benjamin Keys on 3/12/21.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct U_MapApp: App {
+struct Campus_Map: App {
     var body: some Scene {
         WindowGroup {
             GreetingView()

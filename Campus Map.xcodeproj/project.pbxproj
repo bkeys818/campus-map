@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		442F845A25FFD1C900168D76 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F845925FFD1C900168D76 /* Extensions.swift */; };
-		44ADB5F425FBA0920028D56F /* U_MapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ADB5F325FBA0920028D56F /* U_MapApp.swift */; };
+		44ADB5F425FBA0920028D56F /* Campus_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ADB5F325FBA0920028D56F /* Campus_Map.swift */; };
 		44ADB5F825FBA0940028D56F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44ADB5F725FBA0940028D56F /* Assets.xcassets */; };
 		44ADB5FB25FBA0940028D56F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44ADB5FA25FBA0940028D56F /* Preview Assets.xcassets */; };
 		44ADB60525FBA0C30028D56F /* GreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ADB60425FBA0C30028D56F /* GreetingView.swift */; };
@@ -18,8 +18,8 @@
 
 /* Begin PBXFileReference section */
 		442F845925FFD1C900168D76 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		44ADB5F025FBA0920028D56F /* U-Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "U-Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		44ADB5F325FBA0920028D56F /* U_MapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = U_MapApp.swift; sourceTree = "<group>"; };
+		44ADB5F025FBA0920028D56F /* Campus Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Campus Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44ADB5F325FBA0920028D56F /* Campus_Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus_Map.swift; sourceTree = "<group>"; };
 		44ADB5F725FBA0940028D56F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44ADB5FA25FBA0940028D56F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		44ADB5FC25FBA0940028D56F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				44ED28A226023B63001FAA19 /* DataModel.swift */,
-				44ADB5F225FBA0920028D56F /* U-Map */,
+				44ADB5F225FBA0920028D56F /* Campus Map */,
 				44ADB5F125FBA0920028D56F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,15 +51,15 @@
 		44ADB5F125FBA0920028D56F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				44ADB5F025FBA0920028D56F /* U-Map.app */,
+				44ADB5F025FBA0920028D56F /* Campus Map.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		44ADB5F225FBA0920028D56F /* U-Map */ = {
+		44ADB5F225FBA0920028D56F /* Campus Map */ = {
 			isa = PBXGroup;
 			children = (
-				44ADB5F325FBA0920028D56F /* U_MapApp.swift */,
+				44ADB5F325FBA0920028D56F /* Campus_Map.swift */,
 				44ADB60425FBA0C30028D56F /* GreetingView.swift */,
 				44ADB60B25FBB3CE0028D56F /* SearchView.swift */,
 				442F845925FFD1C900168D76 /* Extensions.swift */,
@@ -67,7 +67,7 @@
 				44ADB5FC25FBA0940028D56F /* Info.plist */,
 				44ADB5F925FBA0940028D56F /* Preview Content */,
 			);
-			path = "U-Map";
+			path = "Campus Map";
 			sourceTree = "<group>";
 		};
 		44ADB5F925FBA0940028D56F /* Preview Content */ = {
@@ -81,9 +81,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		44ADB5EF25FBA0920028D56F /* U-Map */ = {
+		44ADB5EF25FBA0920028D56F /* Campus Map */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 44ADB5FF25FBA0940028D56F /* Build configuration list for PBXNativeTarget "U-Map" */;
+			buildConfigurationList = 44ADB5FF25FBA0940028D56F /* Build configuration list for PBXNativeTarget "Campus Map" */;
 			buildPhases = (
 				44ADB5EC25FBA0920028D56F /* Sources */,
 				44ADB5ED25FBA0920028D56F /* Frameworks */,
@@ -94,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = "U-Map";
+			name = "Campus Map";
 			productName = "U-Map";
-			productReference = 44ADB5F025FBA0920028D56F /* U-Map.app */;
+			productReference = 44ADB5F025FBA0920028D56F /* Campus Map.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -113,7 +113,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 44ADB5EB25FBA0920028D56F /* Build configuration list for PBXProject "U-Map" */;
+			buildConfigurationList = 44ADB5EB25FBA0920028D56F /* Build configuration list for PBXProject "Campus Map" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -126,7 +126,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				44ADB5EF25FBA0920028D56F /* U-Map */,
+				44ADB5EF25FBA0920028D56F /* Campus Map */,
 			);
 		};
 /* End PBXProject section */
@@ -170,7 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44ED28A326023B63001FAA19 /* DataModel.swift in Sources */,
-				44ADB5F425FBA0920028D56F /* U_MapApp.swift in Sources */,
+				44ADB5F425FBA0920028D56F /* Campus_Map.swift in Sources */,
 				44ADB60C25FBB3CE0028D56F /* SearchView.swift in Sources */,
 				44ADB60525FBA0C30028D56F /* GreetingView.swift in Sources */,
 				442F845A25FFD1C900168D76 /* Extensions.swift in Sources */,
@@ -302,16 +302,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"U-Map/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Campus_Map/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "U-Map/Info.plist";
+				INFOPLIST_FILE = Campus_Map/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "0.1-alpha";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.bkeys818.U-Map";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bkeys818.campus-map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -324,16 +324,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"U-Map/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Campus_Map/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "U-Map/Info.plist";
+				INFOPLIST_FILE = Campus_Map/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "0.1-alpha";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.bkeys818.U-Map";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bkeys818.campus-map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -343,7 +343,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		44ADB5EB25FBA0920028D56F /* Build configuration list for PBXProject "U-Map" */ = {
+		44ADB5EB25FBA0920028D56F /* Build configuration list for PBXProject "Campus Map" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44ADB5FD25FBA0940028D56F /* Debug */,
@@ -352,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		44ADB5FF25FBA0940028D56F /* Build configuration list for PBXNativeTarget "U-Map" */ = {
+		44ADB5FF25FBA0940028D56F /* Build configuration list for PBXNativeTarget "Campus Map" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44ADB60025FBA0940028D56F /* Debug */,

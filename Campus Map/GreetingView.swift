@@ -1,6 +1,6 @@
 //
 //  GreetingView.swift
-//  U-Map
+//  Campus Map
 //
 //  Created by Benjamin Keys on 3/12/21.
 //

@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  U-Map
+//  Campus Map
 //
 //  Created by Benjamin Keys on 3/15/21.
 //
