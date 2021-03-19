@@ -31,6 +31,23 @@ struct Place: Codable {
     enum Types: String, Codable {
         case dining, housing, hall, athletics, parking, landmark, other
     }
+    
+    private enum CodingKeys: CodingKey {
+        case name, desc, url, id, type, coordinate, address, querys, subplaces
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        desc = try container.decodeIfPresent(String.self, forKey: .desc)
+        url = try container.decodeIfPresent(String.self, forKey: .url)
+        id = try container.decode(UUID.self, forKey: .id)
+        type = try container.decodeIfPresent(Types.self, forKey: .type) ?? .other
+        coordinate = try container.decode(CLLocationCoordinate2D.self, forKey: .coordinate)
+        address = try container.decodeIfPresent(Address.self, forKey: .address)
+        querys = try container.decodeIfPresent([String].self, forKey: .querys)
+        subplaces = try container.decodeIfPresent([Subplace].self, forKey: .subplaces)
+    }
 }
 
 
