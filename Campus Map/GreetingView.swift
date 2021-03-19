@@ -19,12 +19,8 @@ struct GreetingView: View {
     @State private var isSearching = false
     
     var body: some View {
-        if isSearching {
             VStack(alignment: .center) {
                 SearchBar("Find your college", text: $text, isEditing: $isSearching)
-                    .padding(.horizontal, isSearching ? 0 : 36)
-                    .animation(.easeInOut)
-                if text != "" {
                     List {
                         ForEach(filterSearch(), id: \.self) { school in
                             HStack(alignment: .center, spacing: 15) {
@@ -36,21 +32,7 @@ struct GreetingView: View {
                         }
                     }
                     .listStyle(PlainListStyle())
-                    .transition(AnyTransition.move(edge: .top).combined(with: .opacity).animation(Animation.easeIn.delay(1.0)))
-                }
             }
-        } else {
-            Button(action: {}) {
-                Text("Search Colleges")
-                    .font(.title)
-                    .foregroundColor(.primary)
-                    .padding(.vertical, 24)
-                    .padding(.horizontal, 38)
-                    .background(Color.red.opacity(0.4))
-                    .clipShape(Capsule())
-            }
-            .transition(AnyTransition.scale(scale: 0.2).combined(with: .opacity))
-        }
     }
     
     private func filterSearch() -> [String] {
@@ -68,7 +50,7 @@ struct GreetingView: View {
         guard let url = URL(string: urlStr) else {
             fatalError("Error! \"\(urlStr)\" is an invalid URL")
         }
-//
+        
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
