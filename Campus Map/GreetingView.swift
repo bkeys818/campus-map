@@ -62,7 +62,7 @@ struct GreetingView: View {
     
     // TODO: Handle errors w/out "fatalError()"
     private func fetchData(_ school: String) -> Void {
-        let urlStr = "https://raw.githubusercontent.com/bkeys818/u-map-data/\(UIApplication.appVersion)/data/"
+        let urlStr = "https://raw.githubusercontent.com/bkeys818/campus-map-data/\(UIApplication.appVersion)/data/"
             + school.lowercased().replacingOccurrences(of: " ", with: "-") + ".json"
         print(urlStr)
         guard let url = URL(string: urlStr) else {
