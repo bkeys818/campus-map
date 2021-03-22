@@ -9,9 +9,27 @@ import SwiftUI
 
 @main
 struct Campus_Map: App {
+    @AppStorage("school-name") private var schoolName: SchoolName = .none
+    @State private var school: School?
+    
     var body: some Scene {
         WindowGroup {
-            GreetingView()
+            if schoolName == .none {
+//                SelectSchoolView($schoolName)
+                SelectSchoolView(schoolName: $schoolName, school: $school)
+            } else {
+                MainView(schoolName)
+            }
         }
     }
+}
+
+enum SchoolName: String, CaseIterable {
+    case none = "",
+         bsu = "Ball State University",
+         luc = "Loyola University Chicago",
+         pu = "Purdue University",
+         iu = "Indiana University Bloomington"
+    
+    func pathName() -> String { return self.rawValue.lowercased().replacingOccurrences(of: " ", with: "-") }
 }

@@ -7,52 +7,48 @@
 
 import SwiftUI
 
-struct GreetingView: View {
-    private let schools = [
-        "Ball State University",
-        "Loyola University Chicago",
-        "Purdue University",
-        "Indiana University Bloomington"
-    ]
+struct SelectSchoolView: View {
+    @Binding var schoolName: SchoolName
+    @Binding var school: School?
     
     @State private var text = ""
     @State private var isSearching = false
     
     var body: some View {
-            VStack(alignment: .center) {
+        VStack(alignment: .center) {
                 SearchBar("Find your college", text: $text, isEditing: $isSearching)
                     List {
                         ForEach(filterSearch(), id: \.self) { school in
                             HStack(alignment: .center, spacing: 15) {
-                                Text(school)
+                                Text(school.rawValue)
                                     .lineLimit(1)
                                 Spacer()
                             }
-                            .onTapGesture(perform: { fetchData(school) } )
+                            .onTapGesture(perform: { onSelect(school) })
                         }
                     }
                     .listStyle(PlainListStyle())
             }
     }
     
-    private func filterSearch() -> [String] {
-        return schools.filter {
+    private func filterSearch() -> [SchoolName] {
+        return SchoolName.allCases.filter {
             return (text.isEmpty == true)
-                || $0.lowercased().contains(text.lowercased())
+                || $0.rawValue.lowercased().contains(text.lowercased())
         }
     }
     
-    // TODO: Handle errors w/out "fatalError()"
-    private func fetchData(_ school: String) -> Void {
-        let urlStr = "https://raw.githubusercontent.com/bkeys818/campus-map-data/\(UIApplication.appVersion)/data/"
-            + school.lowercased().replacingOccurrences(of: " ", with: "-") + ".json"
-        print(urlStr)
+    private func onSelect(_ school: SchoolName) {
+        let urlStr = "https://raw.githubusercontent.com/bkeys818/campus-map-data/"
+            + UIApplication.appVersion
+            + "/data/"
+            + school.pathName() + ".json"
+        
         guard let url = URL(string: urlStr) else {
             fatalError("Error! \"\(urlStr)\" is an invalid URL")
         }
-        
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
+
+        URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
             if error != nil {
                 fatalError(error?.localizedDescription ?? "Unknown Error")
             }
@@ -61,9 +57,12 @@ struct GreetingView: View {
             }
             DispatchQueue.main.async {
                 do {
-                    let response = try JSONDecoder().decode(SchoolData.self, from: data)
-                    print(response)
+                    try JSONDecoder().decode(School.self, from: data)
+                    try data.write(to: UIApplication.documentDirectory.appendingPathComponent(school.pathName()+".json"))
+                    print("Saved")
+                    schoolName = school
                 } catch {
+                    // TODO: - Handle Error
                     print(error)
                     fatalError()
                 }
@@ -74,9 +73,9 @@ struct GreetingView: View {
 
 
 
-
-struct GreetingView_Previews: PreviewProvider {
-    static var previews: some View {
-        GreetingView()
-    }
-}
+//
+//struct GreetingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SelectSchoolView(.constant(SchoolName.none))
+//    }
+//}

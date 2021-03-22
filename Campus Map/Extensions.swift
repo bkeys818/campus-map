@@ -56,12 +56,17 @@ Decoding Error: No value was found for \(type).
     }
 }
 
-// MARK: - Build Version Variable
-// This works with custom build phase script to create variable with build version.
 extension UIApplication {
+    
+    // MARK: - Build Version Variable
+    // This works with custom build phase script to create variable with build version.
     static var appVersion: String {
         get {
             return "v"+(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)
         }
     }
+    
+    // MARK: - App's Document Directory
+    // Makes this value easier to reach.
+    static let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 }

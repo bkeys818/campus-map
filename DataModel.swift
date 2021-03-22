@@ -19,7 +19,7 @@ struct Campus: Codable {
     let places: [Place]
 }
 
-struct Place: Codable {
+struct Place: Codable, Identifiable {
     let name: String
     let desc, url: String?
     let id: UUID
