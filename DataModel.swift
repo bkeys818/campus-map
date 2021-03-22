@@ -8,12 +8,13 @@
 import Foundation
 import MapKit
 
-struct SchoolData: Codable {
+struct School: Codable {
 //    private let version = "v0.1-alpha"
-    let locations: [Location]
+    let campuses: [Campus]
 }
 
-struct Location: Codable {
+struct Campus: Codable {
+    let name: String?
     let region: MKCoordinateRegion
     let places: [Place]
 }
