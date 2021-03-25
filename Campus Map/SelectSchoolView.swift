@@ -42,7 +42,7 @@ struct SelectSchoolView: View {
         let urlStr = "https://raw.githubusercontent.com/bkeys818/campus-map-data/"
             + UIApplication.appVersion
             + "/data/"
-            + school.pathName() + ".json"
+            + school.pathName() + "/data.json"
         
         guard let url = URL(string: urlStr) else {
             fatalError("Error! \"\(urlStr)\" is an invalid URL")
