@@ -15,11 +15,26 @@ struct Campus_Map: App {
     var body: some Scene {
         WindowGroup {
             if schoolName == .none {
-//                SelectSchoolView($schoolName)
                 SelectSchoolView(schoolName: $schoolName, school: $school)
             } else {
-                MainView(schoolName)
+                if school == nil {
+                    Text("Loading")
+                        .onAppear(perform: loadData)
+                } else {
+                    MainView(school!)
+                }
             }
+        }
+    }
+    private func loadData() {
+        do {
+            let data = try Data(contentsOf: UIApplication.documentDirectory.appendingPathComponent(schoolName.pathName()+".json"))
+            self.school = try JSONDecoder().decode(School.self, from: data)
+        } catch {
+            // TODO: - Handle Error
+            print("Failed to load data.")
+            print(error)
+            fatalError()
         }
     }
 }

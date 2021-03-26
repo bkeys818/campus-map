@@ -16,7 +16,7 @@ struct School: Codable {
 struct Campus: Codable {
     let name: String?
     let region: MKCoordinateRegion
-    let places: [Place]
+    var places: [Place]
 }
 
 struct Place: Codable, Identifiable {

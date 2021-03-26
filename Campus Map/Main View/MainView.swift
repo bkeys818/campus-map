@@ -8,28 +8,25 @@
 import SwiftUI
 
 struct MainView: View {
-    @AppStorage("campus-name") private var campusName: String = ""
-    @State private var school: School
-    private var campus: Campus {
-        return school.campuses.first(where: {campus in
-            campus.name == campusName
-        }) ?? school.campuses.first!
-    }
+    @State private var campus: Campus
     
-    init(_ schoolName: SchoolName) {
-        do {
-            let data = try Data(contentsOf: UIApplication.documentDirectory.appendingPathComponent(schoolName.pathName()+".json"))
-            self._school = State(initialValue: try JSONDecoder().decode(School.self, from: data))
-        } catch {
-            // TODO: - Handle Error
-            print(error)
-            fatalError()
+    init(_ school: School) {
+        if let campusName = UserDefaults.standard.string(forKey: "campus-name") {
+            self._campus = State(
+                initialValue:
+                    school.campuses.first(where: { campus in
+                        campus.name == campusName
+                    }) ?? school.campuses.first!
+            )
+        } else  {
+            self._campus = State(initialValue: school.campuses.first!)
         }
     }
     
     var body: some View {
         ZStack {
             MapView(region: campus.region, places: campus.places)
+                .edgesIgnoringSafeArea(.all)
         }
     }
 }

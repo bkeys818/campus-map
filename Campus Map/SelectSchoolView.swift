@@ -33,6 +33,7 @@ struct SelectSchoolView: View {
     
     private func filterSearch() -> [SchoolName] {
         return SchoolName.allCases.filter {
+            if $0 == .none { return false }
             return (text.isEmpty == true)
                 || $0.rawValue.lowercased().contains(text.lowercased())
         }
