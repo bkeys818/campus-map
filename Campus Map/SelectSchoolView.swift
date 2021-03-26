@@ -58,7 +58,7 @@ struct SelectSchoolView: View {
             }
             DispatchQueue.main.async {
                 do {
-                    try JSONDecoder().decode(School.self, from: data)
+                    self.school = try JSONDecoder().decode(School.self, from: data)
                     try data.write(to: UIApplication.documentDirectory.appendingPathComponent(school.pathName()+".json"))
                     print("Saved")
                     schoolName = school
